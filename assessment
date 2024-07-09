@@ -1,0 +1,49 @@
+Test Case 1: User Signup and login:
+describe('Sensor Model', function () {
+beforeEach(() => {
+cy.viewport(1280, 720)
+cy.visit('https://dev-fe.buttonshift.com/')
+})
+it('Test Case 1: User Signup and login', () => {
+cy.get('.css-m7nve9 > .MuiButton-contained').click({force:true})
+cy.get('[data-cy="auth-email-input"]').type('priyam1690@gmail.com')
+cy.wait(2000)
+cy.get('#AuthChecker > div.MuiBox-root.css-bs0ocn > button').click({force:true})
+cy.get('[data-cy="login-forgot-password-button"]').click({force:true})
+cy.get(':nth-child(1) > input').type('1')
+cy.get(':nth-child(2) > input').type('2')
+cy.get(':nth-child(3) > input').type('3')
+cy.get(':nth-child(4) > input').type('4')
+cy.get(':nth-child(5) > input').type('5')
+cy.get(':nth-child(6) > input').type('6')
+cy.get('body > div.MuiModal-root.hide-scrollbar.css-3tfy7s > div.custom- scrollbar.MuiBox-root.css-1xjsat8 > div > form > div.MuiBox-root.css-bs0ocn >
+button').click({force:true})
+cy.get('#mui-5').type('Admin@12345')
+cy.get('#mui-6').type('Admin@12345')
+cy.get('body > div.MuiModal-root.hide-scrollbar.css-3tfy7s > div.custom- scrollbar.MuiBox-root.css-1xjsat8 > div > form > div.MuiBox-root.css-bs0ocn >
+button').click({force:true})
+cy.title().should('include', 'ButtonShift Community')
+cy.wait(2000)
+cy.get('[aria-label="My Profile"] > .MuiAvatar-root').click({force:true})
+cy.wait(2000)
+cy.get('[aria-label="Logout"]').click({force:true})
+cy.wait(2000)
+})
+})
+Test Case 2: Test the Form Validations:
+it('Test Case 2: Form Validations', () => {
+cy.get('.css-m7nve9 > .MuiButton-contained').click({force:true})
+cy.get('span[class="MuiTouchRipple-root css-w0pj6f"]').last().click({force:true})
+cy.get('#mui-10-helper-text').contains('Email is required').should('exist')
+cy.wait(3000)
+cy.get('[data-cy="auth-email-input"]').type('@gmail.com')
+cy.get('#mui-10-helper-text').contains('Please enter a valid email address').should('exist')
+cy.wait(3000)
+cy.get('[data-cy="auth-email-input"]').type('priyam1690@gmail.com')
+cy.get('span[class="MuiTouchRipple-root css-w0pj6f"]').last().click({force:true})
+cy.wait(2000)
+cy.get('div[class="MuiInput-root MuiInput-underline MuiInputBase-root MuiInputBase- colorPrimary MuiInputBase-formControl MuiInputBase-adornedEnd css- 14zrqjl"]').type('123')
+cy.get('p[class="MuiFormHelperText-root Mui-error MuiFormHelperText-sizeMedium
+MuiFormHelperText-filled css-beuis0"]').contains('Unable to log in with provided
+credentials').should('exist')
+})
